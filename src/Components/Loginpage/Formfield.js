@@ -16,6 +16,7 @@ function Login(props) {
             <>
                 <div className="form-wrapper">
                     <div className="alert-badge success" id="loginAlert">Login Successfull</div>
+                    <div className="alert-badge failed" id="loginFAlert">Login failure, please enter correct email and password</div>
                     <div className="form-heading">
                         <h2>Sign in to Hexamarvel</h2>
                     </div>
@@ -61,7 +62,6 @@ function Login(props) {
                                     .then(res => res.json())
                                     .then((data) => {
                                         data.forEach(function (item, index) {
-                                            console.log(data);
                                             if (item.email === values.email && item.password == values.password){
                                                 var element1 = document.getElementById("loginAlert");
                                                 element1.classList.add("showAlert");
@@ -70,11 +70,29 @@ function Login(props) {
                                                     setUserSession(item.token, [email,password]);
                                                     history.push('/dashboard');
                                                 }, 500);
+                                            }else {
+                                                var element1 = document.getElementById("loginFAlert");
+                                                element1.classList.add("showAlert");
+
+                                                var element = document.getElementById("email-field");
+                                                var element2 = document.getElementById("email-label");
+                                                element.classList.remove("success");
+                                                element2.classList.remove("success");
+                                                element.classList.add("error");
+                                                element2.classList.add("error");
+
+                                                var element = document.getElementById("password-field");
+                                                var element2 = document.getElementById("password-label");
+                                                element.classList.remove("success");
+                                                element2.classList.remove("success");
+                                                element.classList.add("error");
+                                                element2.classList.add("error");
                                             }
                                         });
                                     }).catch((error) => {
                                         setError('Invalid username or password');
                                         console.log(setError);
+                                        alert();
                                     });
                                     
 
