@@ -1,0 +1,169 @@
+.productivity-wrapper{
+    .productivity-section{
+        margin: 24px 9px;
+        .productivity-blocks{
+            .block-pro{
+                display: $__flex;
+                align-items: $__center;
+                justify-content: space-between;
+                padding: 24px;
+                background: $__white;
+                border-radius: 16px;
+                box-shadow:  0px 0px 2px 0px rgb(145, 158, 171) ,0px 8px 20px -4px rgb(145, 158, 171) ;
+                @include respond-below(lg){
+                    padding: 15px;
+                }
+                @include respond-below(custom767){
+                    margin-bottom: 15px;
+                }
+                .left-pro-name{
+                    flex-grow: 1;
+                    h6{
+                        font-size: $__font__size__14;
+                        font-weight: 600;
+                        font-family: $__publicsan__regular;
+                        text-transform: $__capitalize;
+                        color: rgb(33, 43, 54);
+                    }
+                    .analysis{
+                        display: $__flex;
+                        align-items: $__center;
+                        padding: 16px 0px 8px 0px;
+                        .analysis-icon{
+                            display: $__inline__block;
+                            font-size: $__font__size__18;
+                            color: $__primary__color;
+                            background-color: rgba(84, 214, 44, 0.16);
+                            border-radius: 50%;
+                            text-align: $__center;
+                            width: 25px;
+                            height: 25px;
+                            padding: 3px;
+                        }
+                        .analysis-count{
+                            margin-left: 8px;
+                            font-size: $__font__size__14;
+                            font-weight: 600;
+                            font-family: $__publicsan__regular;
+                            color: rgb(33, 43, 54);
+                        }
+                    }
+                    .total-count{
+                        font-size: $__font__size__30+2;
+                        font-family: $__publicsan__regular;
+                        font-weight: 600;
+                        color: rgb(33, 43, 54);
+                        line-height: 1.5;
+                        @include respond-below(lg){
+                            font-size: $__font__size__20+5;
+                        }
+                    }
+                }
+                .right-pro-chart{
+                    span{
+                        font-size: $__font__size__50+10;
+                        display: $__inline__block;
+                        line-height: 1;
+                        color: $__primary__color;
+                        @include respond-below(lg){
+                            font-size: $__font__size__40;
+                        }
+                    }
+                }
+            }
+            .b-p-2{
+                .left-pro-name{
+                    .analysis{
+                        .analysis-icon{
+                            color: rgb(255, 72, 66);
+                        }
+                    }
+                }
+                .right-pro-chart{
+                    span{
+                        color: rgba(255, 72, 66, 0.85);
+                    }
+                }
+            }
+            .b-p-3{
+                .left-pro-name{
+                    .analysis{
+                        .analysis-icon{
+                            color: rgb(24, 144, 255);
+                        }
+                    }
+                }
+                .right-pro-chart{
+                    span{
+                        color: rgba(24, 144, 255, 0.85);
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* Chart- Dashboard */
+.dashboard-main-chart-wrapper{
+    margin: 24px 9px;
+    .dashboard-chart{
+        .charts{
+            @include respond-below(lg){
+                margin-bottom: 20px;
+            }
+            @include respond-below(custom767){
+                margin-bottom: 20px;
+            }
+            .chart-block{
+                text-align: $__center;
+                border-radius: 16px;
+                box-shadow:  0px 0px 2px 0px rgb(145, 158, 171) ,0px 16px 32px -4px rgb(145, 158, 171) ;
+                .heasding{
+                    display: $__flex;
+                    align-items: $__center;
+                    padding: 24px 24px 0px;
+                    h4{
+                        font-size: $__font__size__16;
+                        color: rgb(33, 43, 54);
+                        font-family: $__publicsan__regular;
+                        font-weight: 700;
+                    }
+                }
+                .chart-wrap{
+                    padding-top: 25px;
+                    .apexcharts-legend{      
+                        border-top: 1px solid rgba(145, 158, 171, 0.24);
+                        span{
+                            font-family: $__publicsan__regular !important;
+                            @include respond-below(lg){
+                                font-size: $__font__size__16 !important;
+                            }
+                            @include respond-below(custom767){
+                                font-size: $__font__size__12 !important;
+                            }
+                        }
+                        @include respond-below(lg){
+                            border-top: $__none;
+                            text-align: $__left !important;
+                        }
+                    }
+                    .apexcharts-toolbar{
+                        display: $__none;
+                    }
+                    .apexcharts-datalabels-group{
+                        text{
+                            font-family: $__publicsan__regular !important;
+                            color: rgb(33, 43, 54);
+                            &:first-child{
+                                font-size: $__font__size__13;
+                            }
+                            &:last-child{
+                                font-size: $__font__size__20;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,53 @@
+.dashboard-wrapper{
+    position: $__relative;
+    .dashboard-aside{
+        position: $__fixed;
+        width: 18%;
+        white-space: pre-wrap;
+        overflow: $__hidden;
+        z-index: 100;
+        height: $__full_height_window;
+        background-color: $__white;
+        box-shadow: 6px 0px 10px -8px rgba(0,0,0,0.5);
+        -webkit-box-shadow: 6px 0px 10px -8px rgba(0,0,0,0.5);
+        -moz-box-shadow: 6px 0px 10px -8px rgba(0,0,0,0.5);
+        border-right: 1px solid rgba(145, 158, 171, 0.24);
+        transition: 0.5s ease;
+        @include respond-below(custom1200){
+            width: 35%;
+            left: 0;
+        }
+        @include respond-below(lg){
+            width: 35%;
+            left: 0;
+        }
+        @include respond-below(custom767){
+            width: 0%;
+            left: -75%;
+        }
+    }
+    .dashboard-center{
+        width: 82%;
+        margin-left: $__auto;
+        transition: 0.5s ease;
+        @include respond-below(custom1200){
+            width: $__full__width;
+        }
+        @include respond-below(lg){
+            width: $__full__width;
+        }
+        @include respond-below(custom767){
+            width: $__full__width;
+        }
+    }
+}
+.full-width{
+    width: 100% !important;
+}
+.aside-width{
+    width: 15% !important;
+    @include respond-below(custom767){
+        width: 75% !important;
+        left: 0 !important;
+    }
+}

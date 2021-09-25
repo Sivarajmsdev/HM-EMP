@@ -1,0 +1,884 @@
+/***** Reset *****/
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; }
+
+/* HTML5 display-role reset for older browsers */
+* {
+  box-sizing:border-box;
+}
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+body {
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote {
+  &:before, &:after {
+    content: '';
+    content: none; } }
+
+q {
+  &:before, &:after {
+    content: '';
+    content: none; } }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; 
+}
+
+
+
+/***** Variables *****/
+@import './variable-base-color/_variables';
+
+$breakpoints: (
+  xs: 320px,
+  sm: 568px,
+  custom767: 767px,
+  md: 768px,
+  custom992:992px,
+  custom1024: 1024px,
+  lg: 1023px,
+  custom1200: 1200px,
+  custom1280: 1280px,
+  custom1400: 1400px
+);
+
+// Respond above.
+@mixin respond-above($breakpoint) {
+
+  // If the breakpoint exists in the map.
+  @if map-has-key($breakpoints, $breakpoint) {
+
+    // Get the breakpoint value.
+    $breakpoint-value: map-get($breakpoints, $breakpoint);
+
+    // Write the media query.
+    @media (min-width: $breakpoint-value) {
+      @content;
+    }
+
+  // If the breakpoint doesn't exist in the map.
+  } @else {
+
+    // Log a warning.
+    @warn 'Invalid breakpoint: #{$breakpoint}.';
+  }
+}
+
+// Respond above.
+@mixin respond-below($breakpoint) {
+
+  // If the breakpoint exists in the map.
+  @if map-has-key($breakpoints, $breakpoint) {
+
+    // Get the breakpoint value.
+    $breakpoint-value: map-get($breakpoints, $breakpoint);
+
+    // Write the media query.
+    @media (max-width: $breakpoint-value) {
+      @content;
+    }
+
+  // If the breakpoint doesn't exist in the map.
+  } @else {
+
+    // Log a warning.
+    @warn 'Invalid breakpoint: #{$breakpoint}.';
+  }
+}
+
+
+// Transform properties
+@mixin transform($__property) {
+  -webkit-transform: $__property;
+  -ms-transform: $__property;
+  transform: $__property;
+}
+
+// Define vertical, horizontal, or both position
+@mixin position-alignment($__position) {
+  position: $__absolute;
+  
+  @if $__position == 'vertical' {
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
+  @else if $__position == 'horizontal' {
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translate(-50%);
+  }
+  @else if $__position == 'both' {
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+}
+
+// Transition properties
+@mixin transition($__property) {
+  -webkit-transition: $__property;
+  -ms-transition: $__property;
+  transition: $__property;
+}
+
+// Background properties
+@mixin background-properties($__cover:cover,$__no-repeat:no-repeat,$__center:center){
+  background-size:$__cover;
+  background-repeat:$__no-repeat;
+  background-position:$__center;
+}
+
+// Position
+@mixin position($__position_value,$__top_value,$__right_value,$__bottom_value,$__left_value){
+  position:$__position_value;
+  top:$__top_value;
+  right:$__right_value;
+  bottom:$__bottom_value;
+  left:$__left_value;
+}
+
+// Margin and padding
+@mixin margin-padding($__margin, $__padding) {
+   margin: $__margin;
+   padding:$__padding;
+}
+
+// Border radius
+@mixin border-radius($__radius) {
+  -webkit-border-radius: $__radius;
+  -moz-border-radius: $__radius;
+  -ms-border-radius: $__radius;
+  border-radius: $__radius;
+}
+
+// Text Shortening
+@mixin ellipsis() {
+  overflow: $__hidden;
+  white-space: $__nowrap;
+  text-overflow:$__ellipsis;
+}
+
+// Word Wrapping
+@mixin word-wrap() {
+  -ms-word-break: $__break__all;
+  word-break: $__break__all;
+  word-break: $__break__word;
+  -webkit-hyphens: $__auto;
+  -moz-hyphens: $__auto;
+  hyphens: $__auto;
+}
+
+//Box-sizing
+@mixin box-sizing($__type){
+  -webkit-box-sizing:$__type;
+  -moz-box-sizing:$__type;
+  box-sizing:$__type;
+}
+
+//Box-shadow
+@mixin box-shadow( $__horizontaloffset:10px,$__verticaloffset:10px,$blur:10px,$__spread:10px,$__color: #000000 ) {
+  -webkit-box-shadow: $__horizontaloffset $__verticaloffset $blur $__spread $__color;
+  -moz-box-shadow: $__horizontaloffset $__verticaloffset $blur $__spread $__color;
+  box-shadow: $__horizontaloffset $__verticaloffset $blur $__spread $__color;
+}
+
+//Arrow with Four Optional Directions
+@mixin arrow($__direction: down, $__size: 5px, $__color: #555) {
+   width: 0;
+   height: 0;
+   @if ($__direction == left) {
+      border-top: $__size solid transparent;
+      border-bottom: $__size solid transparent; 
+      border-right: $__size solid $__color;
+   }
+   @else if ($__direction == right) {
+      border-top: $__size solid transparent;
+      border-bottom: $__size solid transparent; 
+      border-left: $__size solid $__color;
+   }
+   @else if ($__direction == down) {
+      border-left: $__size solid transparent;
+      border-right: $__size solid transparent;
+      border-top: $__size solid $__color;
+   }
+   @else {
+      border-left: $__size solid transparent;
+      border-right: $__size solid transparent;
+      border-bottom: $__size solid $__color;
+   }
+}
+
+// Extends 
+%equal-heights {
+  display: $__flex;
+  display: -webkit-flex;
+  flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+}
+
+%flex-align-center{
+  display: $__flex;
+  display: -webkit-flex;
+  align-items:$__center;
+  -webkit-align-items:$__center;
+  justify-content: $__center;
+  -webkit-justify-content: $__center;
+}
+
+%clear{
+  content:"";
+  display:$__table;
+  clear:$__both;
+}
+
+%ul_reset{
+  list-style:$__none;
+  padding:0;
+  margin:0;
+}
+
+%full_width_height_div{
+  width:$__full__width;
+  height:$__full__height;
+}
+
+
+/***** custom values *****/
+$__grid__padding__left:15px;
+$__grid__padding__right:15px;
+
+
+
+
+/***** Grid Values *****/
+$__col__1:8.33333333%;
+$__col__2:16.66666667%;
+$__col__3:25%;
+$__col__4:33.33333333%;
+$__col__5:41.66666667%;
+$__col__6:50%;
+$__col__7:58.33333333%;
+$__col__8:66.66666667%;
+$__col__9:75%;
+$__col__10:83.33333333%;
+$__col__11:91.66666667%;
+$__col__12:100%;
+
+
+
+.row{
+	&::after{
+		content: "";
+		clear: $__both;
+		display: $__block;
+	}
+}
+.col {
+	width:auto;
+	padding-left:$__grid__padding__left;
+	padding-right:$__grid__padding__right;
+	float:$__left;
+	position: relative;
+  	min-height: 1px;
+
+	@include respond-above(xs) {
+		&.col-xs-12 {
+			width: $__col__12;
+		}
+		&.col-xs-11 {
+			width: $__col__11;
+		}
+		&.col-xs-10 {
+			width: $__col__10;
+		}
+		&.col-xs-9 {
+			width: $__col__9;
+		}
+		&.col-xs-8 {
+			width: $__col__8;
+		}
+		&.col-xs-7 {
+			width: $__col__7;
+		}
+		&.col-xs-6 {
+			width: $__col__6;
+		}
+		&.col-xs-5 {
+			width: $__col__5;
+		}
+		&.col-xs-4 {
+			width: $__col__4;
+		}
+		&.col-xs-3 {
+			width: $__col__3;
+		}
+		&.col-xs-2 {
+			width: $__col__2;
+		}
+		&.col-xs-1 {
+			width: $__col__1;
+		}
+	}
+	@include respond-above(sm) {
+		&.col-sm-12 {
+			width: $__col__12;
+		}
+		&.col-sm-11 {
+			width: $__col__11;
+		}
+		&.col-sm-10 {
+			width: $__col__10;
+		}
+		&.col-sm-9 {
+			width: $__col__9;
+		}
+		&.col-sm-8 {
+			width: $__col__8;
+		}
+		&.col-sm-7 {
+			width: $__col__7;
+		}
+		&.col-sm-6 {
+			width: $__col__6;
+		}
+		&.col-sm-5 {
+			width: $__col__5;
+		}
+		&.col-sm-4 {
+			width: $__col__4;
+		}
+		&.col-sm-3 {
+			width: $__col__3;
+		}
+		&.col-sm-2 {
+			width: $__col__2;
+		}
+		&.col-sm-1 {
+			width: $__col__1;
+		}
+	}
+
+	@include respond-above(md) {
+		&.col-md-12 {
+			width: $__col__12;
+		}
+		&.col-md-11 {
+			width: $__col__11;
+		}
+		&.col-md-10 {
+			width: $__col__10;
+		}
+		&.col-md-9 {
+			width: $__col__9;
+		}
+		&.col-md-8 {
+			width: $__col__8;
+		}
+		&.col-md-7 {
+			width: $__col__7;
+		}
+		&.col-md-6 {
+			width: $__col__6;
+		}
+		&.col-md-5 {
+			width: $__col__5;
+		}
+		&.col-md-4 {
+			width: $__col__4;
+		}
+		&.col-md-3 {
+			width: $__col__3;
+		}
+		&.col-md-2 {
+			width: $__col__2;
+		}
+		&.col-md-1 {
+			width: $__col__1;
+		}
+	}
+
+	@include respond-above(lg) {
+		&.col-lg-12 {
+			width: $__col__12;
+		}
+		&.col-lg-11 {
+			width: $__col__11;
+		}
+		&.col-lg-10 {
+			width: $__col__10;
+		}
+		&.col-lg-9 {
+			width: $__col__9;
+		}
+		&.col-lg-8 {
+			width: $__col__8;
+		}
+		&.col-lg-7 {
+			width: $__col__7;
+		}
+		&.col-lg-6 {
+			width: $__col__6;
+		}
+		&.col-lg-5 {
+			width: $__col__5;
+		}
+		&.col-lg-4 {
+			width: $__col__4;
+		}
+		&.col-lg-3 {
+			width: $__col__3;
+		}
+		&.col-lg-2 {
+			width: $__col__2;
+		}
+		&.col-lg-1 {
+			width: $__col__1;
+		}
+	}
+}
+
+/***** Font *****/
+
+@font-face {
+  font-family: 'PublicSans-Black';
+  src: url('../font/PublicSans-Black.woff2') format('woff2'),
+      url('../font/PublicSans-Bold.woff') format('woff'),
+      url('../font/PublicSans-Black.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PublicSans-Regular';
+  src: url('../font/PublicSans-Regular.woff2') format('woff2'),
+      url('../font/PublicSans-Regular.woff') format('woff'),
+      url('../font/PublicSans-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PublicSans-Bold';
+  src: url('../font/PublicSans-Bold.woff2') format('woff2'),
+      url('../font/PublicSans-Bold.woff') format('woff'),
+      url('../font/PublicSans-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PublicSans-Semibold';
+  src: url('../font/PublicSans-SemiBold.woff2') format('woff2'),
+      url('../font/PublicSans-SemiBold.woff') format('woff'),
+      url('../font/PublicSans-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PublicSans-Light';
+  src: url('../font/PublicSans-Light.woff2') format('woff2'),
+      url('../font/PublicSans-Light.woff') format('woff'),
+      url('../font/PublicSans-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PublicSans-Thin';
+  src: url('../font/PublicSans-Thin.woff2') format('woff2'),
+      url('../font/PublicSans-Thin.woff') format('woff'),
+      url('../font/PublicSans-Thin.ttf') format('truetype');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PublicSans-ExtraBold';
+  src: url('../font/PublicSans-ExtraBold.woff2') format('woff2'),
+      url('../font/PublicSans-ExtraBold.woff') format('woff'),
+      url('../font/PublicSans-ExtraBold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PublicSans-Medium';
+  src: url('../font/PublicSans-Medium.woff2') format('woff2'),
+      url('../font/PublicSans-Medium.woff') format('woff'),
+      url('../font/PublicSans-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PublicSans-ExtraLight';
+  src: url('../font/PublicSans-ExtraLight.woff2') format('woff2'),
+      url('../font/PublicSans-ExtraLight.woff') format('woff'),
+      url('../font/PublicSans-ExtraLight.ttf') format('truetype');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Font-family names variable */
+
+$__publicsan__black:'PublicSans-Black';
+$__publicsan__regular: 'PublicSans-Regular';
+$__publicsan__bold:'PublicSans-Bold';
+$__publicsan__semibold:'PublicSans-Semibold';
+$__publicsan__light:'PublicSans-Light'; 
+$__publicsan__thin: 'PublicSans-Thin';
+$__publicsan__extrabold: 'PublicSans-ExtraBold';
+$__publicsan__medium: 'PublicSans-Medium';
+$__publicsan__extralight: 'PublicSans-ExtraLight';
+
+$__body__font__size:14px;
+
+$__font__size__10:10px;
+$__font__size__11:11px;
+$__font__size__12:12px;
+$__font__size__13:13px;
+$__font__size__14:14px;
+$__font__size__15:15px;
+$__font__size__16:16px;
+$__font__size__17:17px;
+$__font__size__19:19px;
+$__font__size__18:18px;
+$__font__size__20:20px;
+$__font__size__22:22px;
+$__font__size__24:24px;
+$__font__size__26:26px;
+$__font__size__28:28px;
+$__font__size__30:30px;
+$__font__size__35:35px;
+$__font__size__40:40px;
+$__font__size__50:50px;
+
+
+h1{
+font-weight:$__normal;
+}
+h2{
+font-weight:$__normal;
+}
+h3{
+font-weight:$__normal;
+}
+h4{
+font-weight:$__normal;
+}
+h5{
+font-weight:$__normal;
+}
+h6{
+font-weight:$__normal;	
+}
+
+/***** Color ******/
+$__black : #000;
+$__primary:#00ab55;
+$__white:#ffffff;
+
+@import './common-style/_common-style';
+
+/***** Page & Components SCSS File *****/
+@import "Page/_dashboard";
+
+@import "Components/Dashboard/_aside";
+@import "Components/Dashboard/_header";
+@import "Components/Dashboard/_welcombanner";
+@import "Components/Dashboard/_dashboard__section";
+@import "Components/Dashboard/_user";
+
+body {
+  font-family: $__publicsan__regular;
+}
+/***** Login Section *****/
+.login-form-wp{
+  .form-wrapper{
+    max-width: 480px;
+    margin: auto;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    justify-content: center;
+    padding: 96px 0px;
+    position:$__relative;
+    .form-heading{
+      display: $__flex;
+      justify-content: space-between;
+      align-items: $__center;
+      padding: 25px 0px;
+      h2{
+          font-family: $__publicsan__bold;
+          font-size: $__font__size__24;
+          font-weight: 700;
+          color: $__black;
+      }
+      img{
+        max-width: 36px;
+      }
+    }
+    .inline-form{
+      max-width: $__full__width;
+      position: $__relative;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      transition: 0.5s ease;
+      input[type="text"], input[type="password"],input[type="email"] {
+        width: $__full__width;
+        outline: $__none;
+        border:$__none;
+         border: 1px solid #c0cad5;
+        padding: 15px;
+        line-height: 25px;
+        border-radius: 10px;
+        position:$__relative;
+        background-color:$__transparent;
+        z-index: 1;
+        font-family: $__publicsan__regular;
+        font-size: $__font__size__16;
+        color: #919eab;
+
+        &:hover {
+          border-color:$__black;
+        }
+        &:focus, &.move, &.success{
+          border-color: $__primary;
+          outline: 1px solid $__primary;
+        }
+        &.error, &.Required, &.Invalid {
+          border-color: #ff0000;
+          outline: 1px solid #ff0000;
+        }
+
+        &.success {
+          & + .info-bar {
+            display: $__none;
+          }
+        }
+      }
+      label{
+        font-family: $__publicsan__regular;
+        position: $__absolute;
+        font-size: 16px;
+        line-height: 25px;
+        top: 14px;
+        left: 15px;
+        background-color: #fff;
+        padding: 0 3px;
+        cursor: text;
+        transition: 0.3s ease;
+        z-index: 0;
+        color: #919eab;
+        &.error, &.Required, &.success, &.Invalid  {
+          top: -14px;
+          font-size: $__font__size__14;
+          z-index: 1;
+          color: #ff0000 !important;
+        }
+        &.success {
+          color: $__primary !important;
+        }
+      }
+      & input[type="text"], & input[type="password"],input[type="email"], &.move, &.success, &.Invalid  {
+        &:focus {
+          &~label{
+            top: -14px;
+            font-size: $__font__size__14;
+            z-index: 1;
+            color: $__primary;
+          }
+        }
+      }
+    }
+    .inline-form-check-box{
+      display: flex;
+      justify-content: space-between;
+      .check-box-section{
+        padding: 15px 0px;
+        display: flex;
+        .check-box-container{
+          display: inline-block;
+          position: relative;
+          padding-left: 35px;
+          margin-bottom: 12px;
+          cursor: pointer;
+          font-size: 22px;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+          height: 18px;
+            input[type="checkbox"]{
+              position: absolute;
+              opacity: 0;
+              cursor: pointer;
+              height: 10px;
+              width: 10px;
+              left: 0;
+            }
+            .checkmark {
+              position: absolute;
+              top: 0;
+              left: 0;
+              height: 18px;
+              width: 18px;
+              background-color: #eee;
+              border: 2px solid rgb(161, 154, 154);
+              border-radius: 5px;
+              &::after {
+                content: "";
+                position: absolute;
+                display: none;
+                left: 4px;
+                top: 0px;
+                width: 3px;
+                height: 7px;
+                border: solid #fff;
+                border-width: 0 3px 3px 0;
+                -webkit-transform: rotate(40deg);
+                -ms-transform: rotate(40deg);
+                transform: rotate(40deg);
+              }
+            }
+            &{
+              input:checked ~ .checkmark {
+                background-color: #00ab55;
+              }
+            }
+            &:hover input[type="checkbox"]:checked ~ .checkmark {
+              background-color: #00ab55;
+            }
+            & {
+              input[type="checkbox"]:checked ~ .checkmark::after {
+                display: block;
+                
+              }
+            }
+            &{
+              input[type="checkbox"]:checked ~ .checkmark {
+                border-color: #00ab55;
+              }
+            }
+        }
+        .remember-text{
+          margin-top: 2px;
+          color: #000;
+          display: block;
+          font-size: $__font__size__14;
+          font-family: $__publicsan__regular;
+        }
+      }
+      .forgot-pasw{
+          padding: 15px 0px;
+        a{
+          text-decoration: underline;
+          text-decoration-color: transparent;
+          color: #00ab55;
+          transition: 0.5s ease;
+          font-size: $__font__size__15;
+          font-family: $__publicsan__medium;
+          &:hover{
+            text-decoration-color: #00ab55;
+          }
+        }
+      }
+    }
+    .form-button{
+      max-width: $__full__width;
+      button{
+        font-size: $__font__size__15;
+        font-weight: 700;
+        outline: $__none;
+        border:$__none;
+        width: 100%;
+        display: $__inherit;
+        align-items: $__inherit;
+        justify-content: $__inherit;
+        padding: 8px 22px;
+        border-radius: 8px;
+        transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+        color: rgb(255, 255, 255);
+        background-color: rgb(0, 171, 85);
+        width: 100%;
+        height: 48px;
+        cursor: pointer;
+        &:hover, &:focus {
+          box-shadow:  0px 8px 16px 0px rgba(0, 0, 0, 0.15);
+        }
+      }
+    }
+  }
+}
+
+/***** Banner-Section ******/
+.banner-wrapper{
+  margin: 20px 0px;
+  .banner-section{
+    border-radius: 16px;
+    position: relative;
+    z-index: 0;
+    box-shadow: 0px 0px 2px 0px rgba(17,68,85,0.24), 0px 16px 32px -4px rgba(17,68,85,0.24);
+    -webkit-box-shadow: 0px 0px 2px 0px rgba(17,68,85,0.24),  0px 16px 32px -4px rgba(17,68,85,0.24);
+    -moz-box-shadow: 0px 0px 2px 0px rgba(17,68,85,0.24) , 0px 16px 32px -4px rgba(17,68,85,0.24);
+    padding: 56px 40px 90px 56px;
+    .top-left-logo{
+      a{
+        .sm-logo{
+          width: 45px;
+          height: 45px;
+          display: $__block;
+          img{
+            width: $__inherit;
+          }
+        }
+      }
+    }
+    .heading-section{
+      margin: 80px 0px 40px;
+      text-align: left;
+      h2{
+        font-family: $__publicsan__bold;
+        font-weight: 700;
+        font-size: $__font__size__24;
+        line-height: 1.5;
+      }
+    }
+    .banner-image{
+      img{
+        @include respond-above(custom767){
+          max-width: $__full__width;
+        }
+      }
+    }
+  }
+}

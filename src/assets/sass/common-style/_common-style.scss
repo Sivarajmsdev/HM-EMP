@@ -1,0 +1,23 @@
+.info-bar {
+	position: $__absolute;
+	right: 20px;
+	top: 50%;
+	transform: translateY(-50%);
+	font-size: $__font__size__12;
+	color: #ff0000;
+}
+.alert-badge {
+	padding: 15px 20px;
+	border-radius: 6px;
+	display: $__none;
+	&.showAlert {
+		display: $__block;
+	}
+
+	&.success {
+		background: #dff7eb;
+		color: #00ab55;
+		left: 0px;
+		top: 0px;
+	}
+}
