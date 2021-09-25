@@ -88,16 +88,16 @@ export default class Aside extends React.Component{
                                         <div className="drop-down" id="list-2-sublist">
                                             <ul>
                                                 <li>
-                                                    <a href="#">Web & Hybrid</a>
+                                                    <a href="www.example.com">Web & Hybrid</a>
                                                 </li>
                                                 <li>
-                                                    <a href="#">Backend & DB</a>
+                                                    <a href="www.example.com">Backend & DB</a>
                                                 </li>
                                                 <li>
-                                                    <a href="#">CMS & Ecommerce</a>
+                                                    <a href="www.example.com">CMS & Ecommerce</a>
                                                 </li>
                                                 <li>
-                                                    <a href="#">Mobile</a>
+                                                    <a href="www.example.com">Mobile</a>
                                                 </li>
                                             </ul>
                                         </div>
