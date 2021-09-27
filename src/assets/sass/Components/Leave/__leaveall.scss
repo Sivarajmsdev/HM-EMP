@@ -1,0 +1,359 @@
+.leave-card{
+    .le-card{
+        .lb{
+            background-color: rgb(0, 82, 73);
+        }
+        .lop{
+            background-color: rgb(122, 79, 1);
+        }
+        .hrper{
+            background-color: rgb(183, 33, 54);
+        }
+        .leave-chart{
+            background-color: rgb(0, 123, 85);
+            .count{
+                span{
+                    font-size: $__font__size__18 !important;
+                    background-color: $__white;
+                    border-radius: 16px;
+                    color: #b72136 !important;
+                    padding: 0 !important;
+                    display: $__flex !important;
+                    height: 46px;
+                    align-items: $__center;
+                    justify-content: $__center;
+                    margin-top: 14px;          
+                }
+            }
+        }
+        .leave-card-box-sha{
+            border-radius: 16px;
+            box-shadow: rgba(145, 158, 171, 0.24) 0px 0px 2px 0px, rgba(145, 158, 171, 0.24) 0px 16px 32px -4px;
+            padding: 24px;
+            position: $__relative;
+            @include respond-below(custom992){
+                margin-bottom: 25px;
+            }
+            .leave-bal-in, .leave-lop-in{
+                display: $__flex;
+                justify-content: flex-start;
+                align-items: $__center;
+                .count{
+                    text-align: $__left;
+                    h3{
+                        font-size: $__font__size__15;
+                        font-family: $__publicsan__medium;
+                        font-weight: 600;
+                        color: $__white;
+                        text-transform: $__capitalize;
+                        sup{
+                            font-size: 10px;
+                             vertical-align: revert;
+                        }
+                    }
+                    span{
+                        font-size: $__font__size__40;
+                        font-family: $__publicsan__medium;
+                        font-weight: 600;
+                        color: $__white;
+                        display: $__inline__block;
+                        padding-top: 20px;
+                    }
+                }
+                .icon{
+                    position: $__absolute;
+                    top: 15px;
+                    right: 26px;
+                    span{
+                        font-size: $__font__size__50+50;
+                        color: $__white;
+                        opacity: 0.2;
+                    }
+                }
+            }
+            .leave-bal-in{
+                .icon{
+                    top: 0;
+                }
+            }
+            .leave-lop-in{
+                .icon{
+                    right: 10px;
+                }
+            }
+        }
+    }
+}
+
+/* Permission section */
+.leave-permission-wrapper{
+    margin-top: 30px;
+    .leave-per-section ,.permission-hr-section{
+    
+        .leave-permission, .hour-permission{
+            box-shadow: rgba(145, 158, 171, 0.24) 0px 0px 2px 0px, rgba(145, 158, 171, 0.24) 0px 16px 32px -4px;
+            border-radius: 16px;
+            @include respond-below(custom992){
+                margin-bottom: 25px;
+            }
+            .leave-form-container{
+                .leave-permission-head{
+                    font-size: $__font__size__24;
+                    font-family: $__publicsan__medium;
+                    font-weight: 600;
+                    color: $__primary__color;
+                    display: $__flex;
+                    align-items: $__center;
+                    padding: 24px 24px 0px 24px;
+                    span{
+                        display: $__block;
+                        font-size: $__font__size__24+4;
+                        margin-right: 5px;
+                    }
+                }
+                .form-section{
+                    padding: 24px;
+                    .inline-form{
+                        position: $__relative;
+                        width: $__full__width;
+                        margin-bottom: 15px;
+                        label{
+                            font-size: $__font__size__15;
+                            font-family: $__publicsan__bold;
+                            color: $__content__color;
+                            display: $__flex;
+                            text-transform: $__capitalize;
+                            align-items: $__center;
+                            padding-bottom: 15px;
+                        }
+                        input[type="text"]{
+                            border: 1px solid $__content__color;
+                            outline: $__none;
+                            padding: 15px 15px 15px 45px;
+                            width: $__full__width;
+                            font-size: $__font__size__15;
+                            font-family: $__publicsan__regular;
+                            font-weight: 600;
+                            color: $__primary__color;
+                            border-radius: 8px;
+                            cursor: $__pointer;
+                            background: url('../../../image/calendar.png') no-repeat;
+                            background-position: 15px 50%;
+                            background-size: 20px 20px;
+                            &::placeholder{
+                                color: $__primary__color;
+                            }
+                            &:focus{
+                                outline: $__none;
+                            }
+                        }
+                        select{
+                            border-radius: 8px;
+                            border: 1px solid #000;
+                            padding: 15px 35px 15px 15px;
+                            color:$__primary__color;
+                            appearance: $__none;
+                            cursor: $__pointer;
+                            font-size: $__font__size__15;
+                            font-family: $__publicsan__regular;
+                            font-weight: 600;
+                            background: url('../../../image/down-filled-triangular-arrow.png') no-repeat;
+                            background-position: 90% 50%;
+                            background-size: 10px 10px;
+                            width: 200px;
+                            &:focus{
+                                outline: $__none;
+                            }
+                        }
+                        textarea{
+                            border: 1px solid $__content__color;
+                            outline: $__none;
+                            padding: 15px;
+                            width: $__full__width;
+                            font-size: $__font__size__15;
+                            font-family: $__publicsan__regular;
+                            color: $__primary__color;
+                            border-radius: 8px;
+                            height: 150px;
+                        }
+                        /* calender */
+                        .calendar-section{
+                            position: $__absolute;
+                            z-index: 10;
+                            display: $__none;
+                            .react-calendar{
+                                font-family: $__publicsan__regular !important;
+                                border-color: $__primary__color !important;
+                                border-radius: 8px;
+                                box-shadow: rgba(145, 158, 171, 24%) 0px 0px 2px 0px, rgba(145, 158, 171, 24%) 0px 16px 32px -4px;
+                                width: $__auto;
+                                max-width: 320px;
+                                font-size: $__font__size__15;
+                                .react-calendar__navigation{
+                                    background-color: $__primary__color;
+                                    border-top-left-radius: 8px;
+                                    border-top-right-radius: 8px;
+                                    .react-calendar__navigation__label__labelText{
+                                        font-family: $__publicsan__bold;
+                                    }
+                                }
+                                button{
+                                    border-radius:8px;
+                                    &:hover{
+                                        background-color:#c8facd ;
+                                    }
+                                }
+                                .react-calendar__navigation__arrow{
+                                    font-size: $__font__size__28;
+                                    font-weight: bold;
+                                    color: $__content__color;
+                                }
+                                abbr[title]{
+                                    text-decoration: $__none !important;
+                                }
+
+                                .react-calendar__tile--now{
+                                    background-color: #c8facd !important;
+                                    border-radius: 8px;
+                                }
+                                .react-calendar__tile--active{
+                                    background-color: $__primary__color !important;
+                                    color: $__white !important;
+                                    border-radius: 8px;
+                                }
+                            }
+                        }
+                        .fromdate-calendar{
+                            top: 30px;
+                            right: -30px;
+                            left: $__auto;
+                        }
+                        .todate-calendar{
+                            top: 30px;
+                            right: -30px;
+                            left: $__auto;
+                        }
+                        .show{
+                            display: $__flex;
+                        }
+                    }
+                    .inline-form-button{
+                        button{
+                            outline: 0px;
+                            border: 0px;
+                            margin: 0px;
+                            cursor: $__pointer;
+                            display: $__flex;
+                            align-items: $__center;
+                            vertical-align: middle;
+                            appearance: $__none;
+                            font-family: $__publicsan__regular;
+                            font-weight: 700;
+                            font-size: $__font__size__14;
+                            line-height: 1.71429;
+                            text-transform: $__capitalize;
+                            min-width: 64px;
+                            padding: 6px 16px;
+                            border-radius: 8px;
+                            color:$__white;
+                            background-color: rgb(0, 171, 85);
+                            box-shadow: rgba(0, 171, 85 , 24%) 0px 2px 8px 0px;
+                        }
+                    }
+                }
+            }
+            .hour-permission-container{
+                .reminder-card{
+                    background-color: #c8facd;
+                    margin: 15px;
+                    margin-bottom: 0;
+                    border-radius: 16px;
+                    display: $__flex;
+                    justify-content: space-around;
+                    align-items: $__center;
+                    padding: 24px 0px;
+                    .warning-icon{
+                        margin: 0px 15px;
+                        span{
+                            display: $__flex;
+                            font-size: $__font__size__50;
+                            color: $__content__color;
+                        }
+                    }
+                    p{
+                        font-size: $__font__size__15;
+                        font-family: $__publicsan__regular;
+                        color: $__content__color;
+                        font-weight: 600;
+                        line-height: 22px;
+                        padding-right: 15px;
+                        span{
+                            
+                            font-size: $__font__size__18;
+                        }
+                    }
+                }
+                .time-section{
+                    display: $__flex;
+                    justify-content: space-between;
+                    align-items: $__center;
+                    @include respond-below(custom767){
+                        display: $__block;
+                    }
+                    .inline-form{
+                        select{
+                            width: 100% !important;
+                            border: 1px solid #000;
+                        }
+                        &:first-child{
+                            margin-right: 15px;
+                            @include respond-below(custom767){
+                                margin-right: 0;
+                            }
+                        }
+                    }
+                }
+                .permission-date-calendar{
+                    left: $__auto;
+                    right: -50px;
+                    top: 30px;
+                }
+            }
+        }
+    }
+    .holiday-list{
+        .off-holidatlist{
+            h3{
+                font-size: $__font__size__18;
+                font-family: $__publicsan__medium;
+                font-weight: 600;
+                color: $__primary__color;
+                display: $__flex;
+                align-items: $__center;
+                padding: 24px 24px 15px 0px;
+                line-height: 30px;
+            }
+            .holi-card{
+                background-color: $__primary__color;
+                margin-bottom: 15px;
+                border-radius: 8px;
+                padding: 10px;
+                h4{
+                    font-size: $__font__size__15;
+                    font-family: $__publicsan__medium;
+                    font-weight: 500;
+                    color: $__white;
+                    padding-bottom: 5px;
+                    line-height: 20px;
+                }
+                p{
+                    font-size: $__font__size__13;
+                    font-family: $__publicsan__medium;
+                    font-weight: 500;
+                    color: $__white;
+                    padding-bottom: 5px;
+                }
+            }
+        }
+    }
+}

@@ -5,6 +5,7 @@ import {
   } from "react-router-dom";
 import { Formik, Field, Form } from 'formik';
 
+
 function Login(props) {
     
         const [email, setEmail] = useState("");
@@ -71,22 +72,25 @@ function Login(props) {
                                                     history.push('/dashboard');
                                                 }, 500);
                                             }else {
-                                                var element1 = document.getElementById("loginFAlert");
-                                                element1.classList.add("showAlert");
+                                               alert();
+                                                /* setTimeout(() => {
+                                                    var element3 = document.getElementById("loginFAlert");
+                                                    element3.classList.add("showAlert");
 
-                                                var element = document.getElementById("email-field");
-                                                var element2 = document.getElementById("email-label");
-                                                element.classList.remove("success");
-                                                element2.classList.remove("success");
-                                                element.classList.add("error");
-                                                element2.classList.add("error");
+                                                    var element = document.getElementById("email-field");
+                                                    var element2 = document.getElementById("email-label");
+                                                    element.classList.remove("success");
+                                                    element2.classList.remove("success");
+                                                    element.classList.add("error");
+                                                    element2.classList.add("error");
 
-                                                var element = document.getElementById("password-field");
-                                                var element2 = document.getElementById("password-label");
-                                                element.classList.remove("success");
-                                                element2.classList.remove("success");
-                                                element.classList.add("error");
-                                                element2.classList.add("error");
+                                                    var element = document.getElementById("password-field");
+                                                    var element2 = document.getElementById("password-label");
+                                                    element.classList.remove("success");
+                                                    element2.classList.remove("success");
+                                                    element.classList.add("error");
+                                                    element2.classList.add("error");
+                                                }, 550);*/
                                             }
                                         });
                                     }).catch((error) => {

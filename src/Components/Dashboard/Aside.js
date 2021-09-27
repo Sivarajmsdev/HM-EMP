@@ -61,7 +61,7 @@ export default class Aside extends React.Component{
                             <div className="list-wrapper">
                                 <ul className="list-ul">
                                     <li className="list-blocks active" id="list-1" onClick={this.dropdownActive.bind(this,'list-1','','')}>
-                                        <button className="lists">
+                                        <Link to="/dashboard" className="lists">
                                             <span className="icon">
                                                 <FiMonitor />
                                             </span>
@@ -71,7 +71,7 @@ export default class Aside extends React.Component{
                                                     
                                                 </span>
                                             </div>
-                                        </button>
+                                        </Link>
                                     </li>
                                     <li className="list-blocks" id="list-2" onClick={this.dropdownActive.bind(this,'list-2','list-2-sublist','list-2-icon')}>
                                         <button className="lists">
@@ -103,7 +103,7 @@ export default class Aside extends React.Component{
                                         </div>
                                     </li>
                                     <li className="list-blocks" id="list-3" onClick={this.dropdownActive.bind(this,'list-3','','')}>
-                                        <button className="lists">
+                                        <Link to="/leave" className="lists">
                                             <span className="icon">
                                                 <BsChatSquareQuote />
                                             </span>
@@ -113,10 +113,10 @@ export default class Aside extends React.Component{
                                                     
                                                 </span>
                                             </div>
-                                        </button>
+                                        </Link>
                                     </li>
                                     <li className="list-blocks" id="list-4" onClick={this.dropdownActive.bind(this,'list-4','','')}>
-                                        <button className="lists">
+                                        <Link to="/profile" className="lists">
                                             <span className="icon">
                                                 <BiUser />
                                             </span>
@@ -126,7 +126,7 @@ export default class Aside extends React.Component{
                                                     
                                                 </span>
                                             </div>
-                                        </button>
+                                        </Link>
                                     </li>
                                     <li className="list-blocks" id="list-5" onClick={this.dropdownActive.bind(this,'list-5','','')}>
                                         <button className="lists">

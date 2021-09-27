@@ -617,6 +617,7 @@ $__white:#ffffff;
 @import "Components/Dashboard/_welcombanner";
 @import "Components/Dashboard/_dashboard__section";
 @import "Components/Dashboard/_user";
+@import "Components/Leave/__leaveall";
 
 body {
   font-family: $__publicsan__regular;
@@ -881,4 +882,12 @@ body {
       }
     }
   }
+}
+
+.leave-wrapper{
+    .leave-section{
+        .leave-container{
+            margin: 24px 9px;
+        }
+    }
 }
