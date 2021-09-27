@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect  } from 'react';
 import { IoIosClipboard } from 'react-icons/io';
 
 import { Formik, Field, Form } from 'formik';
@@ -8,6 +8,13 @@ import Calendarto from 'react-calendar';
 import moment from 'moment'
 import 'react-calendar/dist/Calendar.css';
 
+
+function getStorageValue(key, defaultValue) {
+  // getting stored value
+  const saved = localStorage.getItem(key);
+  const initial = JSON.parse(saved);
+  return initial || defaultValue;
+}
 
 
 export default function Leaveform(){
@@ -43,6 +50,8 @@ export default function Leaveform(){
     }
 
 
+
+
     return(
         <div className="leave-form-container">
             <h3 className="leave-permission-head">
@@ -56,15 +65,16 @@ export default function Leaveform(){
                     initialValues={{
                         fromdate: '',
                         todate: '',
-                        location:[],
+                        leavetype:[],
                         terms:'',
-                        reson:''
+                        reason:''
                     }}
                     onSubmit={async (values) => {
                         await new Promise((r) => setTimeout(r, 500));
                         values.fromdate = moment(fromdateState).format('MMMM Do YYYY').toString();
                         values.todate = moment(todateState).format('MMMM Do YYYY').toString();
-                        alert(JSON.stringify(values, null, 2));
+                        //alert(JSON.stringify(values, null, 2));
+                        localStorage.setItem('key',JSON.stringify(values, null, 2));
                     }}
                 >
                     <Form method="/">
@@ -94,12 +104,12 @@ export default function Leaveform(){
                         </div>
 
                         <div className="inline-form">
-                            <label htmlFor="location">Leave Type</label>
+                            <label htmlFor="leavetype">Leave Type</label>
                             <Field
                                 
                                 component="select"
-                                id="location"
-                                name="location"
+                                id="leavetype"
+                                name="leavetype"
                                 multiple={false}
                             >
                                 <option value="Type 1">Type 1</option>
@@ -109,12 +119,12 @@ export default function Leaveform(){
                             </Field>
                         </div>
                         <div className="inline-form">
-                            <label htmlFor="reson">For what purpose you take leave?</label>
+                            <label htmlFor="reason">For what purpose you take leave?</label>
                             <Field
                                 component="textarea"
                                 placeholder="Enter Reason..."
-                                id="reson"
-                                name="reson"
+                                id="reason"
+                                name="reason"
                                 multiple={false}
                             >
                             </Field>
