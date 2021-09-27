@@ -72,7 +72,7 @@ function Login(props) {
                                                     history.push('/dashboard');
                                                 }, 500);
                                             }else {
-                                               alert();
+                                               
                                                 /* setTimeout(() => {
                                                     var element3 = document.getElementById("loginFAlert");
                                                     element3.classList.add("showAlert");
